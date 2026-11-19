@@ -26,12 +26,12 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama Produk</th>
-                    <th scope="col">Stok</th>
-                    <th scope="col">Harga</th>
-                    <th scope="col">Deskripsi</th>
-                    <th scope="col">Aksi</th>
+                    <th>No</th>
+                    <th>Nama Produk</th>
+                    <th>Stok</th>
+                    <th>Harga</th>
+                    <th>Deskripsi</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
 
@@ -43,7 +43,6 @@
                     </th>
 
                     <td>{{ $item->name_product }}</td>
-
                     <td>{{ $item->stock_product }}</td>
 
                     <td>
@@ -53,18 +52,27 @@
                     <td>{{ $item->desc_product }}</td>
 
                     <td>
+                        <form action="/product/{{ $item->id_product }}"
+                              method="POST"
+                              style="display:inline;"
+                              onsubmit="return confirm('Apakah anda yakin akan menghapus data {{ $item->name_product }} ini?')">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Hapus
+                            </button>
+                        </form>
+
+                        <a href="/product/{{ $item->id_product }}/edit"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
                         <a href="/product/{{ $item->id_product }}"
                            class="btn btn-info btn-sm">
                             Detail
                         </a>
-
-                        <button type="button" class="btn btn-danger btn-sm">
-                            Delete
-                        </button>
-
-                        <button type="button" class="btn btn-warning btn-sm">
-                            Edit
-                        </button>
                     </td>
                 </tr>
                 @empty

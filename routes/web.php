@@ -23,16 +23,19 @@ Route::get('/about', function () {
 // Halaman Contact
 Route::view('/contact', 'pages.contact');
 
-// Halaman Product
+// CRUD Product
 Route::get('/product', [ProductController::class, 'index']);
 
-// Halaman Tambah Product
 Route::get('/product/addProduct', [ProductController::class, 'addProduct']);
 
-// Menyimpan Product
 Route::post('/product/store', [ProductController::class, 'store']);
 
-// Halaman Detail Product
+Route::get('/product/{id}/edit', [ProductController::class, 'edit']);
+
+Route::put('/product/{id}', [ProductController::class, 'update']);
+
+Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+
 Route::get('/product/{id}', [ProductController::class, 'show']);
 
 // Halaman Category
